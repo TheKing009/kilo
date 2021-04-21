@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <errno.h>
 
 /*** defines ***/
 
@@ -65,7 +66,7 @@ char editorReadKey()
   {
     if(nread == -1 && errno != EAGAIN)
     {
-      die('read');
+      die("read");
     }
   }
   return c;
