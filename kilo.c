@@ -91,7 +91,7 @@ typedef struct
 
 #define ABUF_INIT {NULL,  0}
 
-void abAppend(struct abuf *ab, const char *s, int len)
+void abAppend(abuf *ab, const char *s, int len)
 {
   char *new = realloc(ab->b, ab->len + len);
   
@@ -101,7 +101,7 @@ void abAppend(struct abuf *ab, const char *s, int len)
   ab->len += len;
 }
 
-void abFree(struct abuf *ab)
+void abFree(abuf *ab)
 {
   free(ab->b);
 }
@@ -162,7 +162,7 @@ int getWindowSize(int *rows, int *cols) {
 
 /*** output ***/ 
 
-void editorDrawRows(struct abuf *ab) 
+void editorDrawRows(abuf *ab) 
 {
   int y;
   for (y = 0; y < E.screenRows; y++) 
@@ -197,7 +197,7 @@ void editorDrawRows(struct abuf *ab)
 
 void editorRefreshScreen()
 {
-  struct abuf ab = ABUF_INIT;
+  abuf ab = ABUF_INIT;
 
   abAppend(&ab, "\x1b[?25l", 6);
   abAppend(&ab, "\x1b[2J", 4);
